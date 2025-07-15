@@ -34,24 +34,24 @@
     const ua = navigator.userAgent || navigator.vendor || window.opera;
 
     function isTikTokBrowser() {
-      return ua.includes("TikTok") || ua.includes("musical");
+      return ua.toLowerCase().includes("tiktok") || ua.toLowerCase().includes("musical");
     }
 
     function isMobile() {
-      return /android|iphone|ipad|ipod|windows phone/i.test(ua);
+      return /android|iphone|ipad|ipod|windows phone/i.test(ua.toLowerCase());
     }
 
     if (isTikTokBrowser()) {
-      // Показываем фото и текст в TikTok
+      // В TikTok показываем картинку и текст
       document.getElementById("content").innerHTML = `
         <img src="open_browser.jpg1" alt="Open in browser">
         <p>Если ссылка не открылась — скопируйте и вставьте её в браузере</p>
       `;
       setTimeout(() => {
         window.location.href = "https://prev.affomelody.com/click?pid=107337&offer_id=25&sub2=Only";
-      }, 1000); // через 1 секунду редирект
+      }, 3000); // 3 секунды задержка
     } else if (isMobile()) {
-      // На мобилках сразу редирект
+      // На других мобилках сразу редирект
       window.location.href = "https://prev.affomelody.com/click?pid=107337&offer_id=25&sub2=Only";
     } else {
       // На ПК — пустая страница
