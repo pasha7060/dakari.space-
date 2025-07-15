@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Open in browser</title>
+  <title>Переход...</title>
   <style>
     body {
       margin: 0;
@@ -10,6 +10,7 @@
       background: #000;
       color: #fff;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -17,9 +18,12 @@
       text-align: center;
     }
     img {
-      max-width: 100%;
+      max-width: 90%;
       height: auto;
-      display: block;
+      margin-bottom: 20px;
+    }
+    p {
+      max-width: 90%;
     }
   </style>
 </head>
@@ -34,18 +38,24 @@
     }
 
     function isMobile() {
-      return /android|iphone|ipad|ipod|opera mini|iemobile|mobile/i.test(ua);
+      return /android|iphone|ipad|ipod|windows phone/i.test(ua);
     }
 
     if (isTikTokBrowser()) {
-      // Если TikTok — показываем фото
-      document.getElementById("content").innerHTML = `<img src="open_browser1.jpg" alt="Open in browser">`;
+      // Показываем фото и текст в TikTok
+      document.getElementById("content").innerHTML = `
+        <img src="open_browser.jpg1" alt="Open in browser">
+        <p>Если ссылка не открылась — скопируйте и вставьте её в браузере</p>
+      `;
+      setTimeout(() => {
+        window.location.href = "https://prev.affomelody.com/click?pid=107337&offer_id=25&sub2=Only";
+      }, 1000); // через 1 секунду редирект
     } else if (isMobile()) {
-      // Если телефон (не TikTok) — редирект
+      // На мобилках сразу редирект
       window.location.href = "https://prev.affomelody.com/click?pid=107337&offer_id=25&sub2=Only";
     } else {
-      // Если ПК — показываем чистую страницу
-      document.getElementById("content").innerHTML = "Not available";
+      // На ПК — пустая страница
+      document.getElementById("content").innerHTML = "";
     }
   </script>
 </body>
