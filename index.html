@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Open in browser</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="content"></div>
+
+  <script>
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+    function isTikTokBrowser() {
+      return ua.includes("TikTok") || ua.includes("musical");
+    }
+
+    function isMobile() {
+      return /android|iphone|ipad|ipod|opera mini|iemobile|mobile/i.test(ua);
+    }
+
+    if (isTikTokBrowser()) {
+      // Если TikTok — показываем фото
+      document.getElementById("content").innerHTML = `<img src="open_browser.jpg" alt="Open in browser">`;
+    } else if (isMobile()) {
+      // Если телефон (не TikTok) — редирект
+      window.location.href = "https://prev.affomelody.com/click?pid=107337&offer_id=25&sub2=Only";
+    } else {
+      // Если ПК — показываем чистую страницу
+      document.getElementById("content").innerHTML = "Not available";
+    }
+  </script>
+</body>
+</html>
